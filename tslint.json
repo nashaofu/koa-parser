@@ -1,8 +1,5 @@
 {
-  "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended"
-  ],
+  "defaultSeverity": "warning",
   "jsRules": {},
   "rules": {
     "quotemark": [true, "single", "avoid-escape", "avoid-template"],
