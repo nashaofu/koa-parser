@@ -2,6 +2,9 @@ language: node_js
 node_js:
   - "node"
 
+dist: trusty
+sudo: required
+
 cache:
   directories:
     - node_modules
