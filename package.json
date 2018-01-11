@@ -1,6 +1,6 @@
 {
   "name": "koa-parser",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "a body parser for koa",
   "main": "./dist/lib/index.js",
   "types": "./lib/index.ts",
