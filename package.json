@@ -1,0 +1,46 @@
+{
+  "name": "koa-parser",
+  "version": "0.2.0",
+  "description": "a body parser for koa",
+  "main": "./dist/lib/index.js",
+  "types": "./lib/index.ts",
+  "scripts": {
+    "dev": "tsc -p ./tsconfig.dev.json && node ./.cache/server.js",
+    "build": "tsc -p ./tsconfig.json",
+    "lint": "tslint -p ./tslint.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nashaofu/koa-parser.git"
+  },
+  "keywords": [
+    "koa",
+    "koa-body",
+    "koa-parser",
+    "koa-middleware",
+    "typescript"
+  ],
+  "author": "nashaofu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nashaofu/koa-parser/issues"
+  },
+  "homepage": "https://github.com/nashaofu/koa-parser#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.com/"
+  },
+  "dependencies": {
+    "co-body": "^5.1.1",
+    "formidable": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/co-body": "0.0.3",
+    "@types/formidable": "^1.0.30",
+    "@types/koa": "^2.0.43",
+    "@types/koa-logger": "^3.1.0",
+    "koa": "^2.4.1",
+    "koa-logger": "^3.1.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2"
+  }
+}
