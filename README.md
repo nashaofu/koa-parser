@@ -9,7 +9,7 @@ a body parser for koa. support json, form(urlencoded), multipart and text type b
 
 ```js
 const Koa = require('koa')
-const parser = require('koa-parser)
+const parser = require('koa-parser')
 
 const port = 3000
 const app = new Koa()
