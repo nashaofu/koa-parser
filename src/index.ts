@@ -1,7 +1,7 @@
 import * as Koa from 'koa'
-import parser from './parser'
+import * as parser from './parser'
 
-export default ({
+const KoaParser = ({
   encoding = 'utf-8', // 编码
   error = false, // 解析错误回调
   json = true, // 支持json解析
@@ -40,3 +40,5 @@ export default ({
     return await next()
   }
 }
+
+export = KoaParser

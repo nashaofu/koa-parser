@@ -44,9 +44,9 @@ const multipart = (ctx: Koa.Context, {
   })
 }
 
-export default {
+export {
   json,
   multipart,
   text,
-  urlencoded: form
+  form as urlencoded
 }

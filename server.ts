@@ -1,7 +1,7 @@
 import * as Koa from 'koa'
 import * as logger from 'koa-logger'
 
-import parser from './lib'
+import * as parser from './src'
 
 const port = 3000
 const app = new Koa()
