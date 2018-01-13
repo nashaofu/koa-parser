@@ -1,8 +1,0 @@
-.cache/
-.vscode/
-node_modules/
-src/
-types/
-*.log
-server.ts
-tsconfig.dev.json

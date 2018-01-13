@@ -1,9 +1,12 @@
 {
   "name": "koa-parser",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "description": "a body parser for koa",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "files": [
+    "./lib"
+  ],
   "scripts": {
     "dev": "tsc -p ./tsconfig.dev.json && node ./.cache/server.js",
     "start": "npm run dev",
