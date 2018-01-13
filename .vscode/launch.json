@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "调试",
+      "name": "Launch Program",
       "preLaunchTask": "tsc",
       "program": "${workspaceFolder}\\server.ts",
       "outFiles": [

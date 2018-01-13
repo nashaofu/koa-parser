@@ -5,7 +5,7 @@
   "tasks": [
     {
       "type": "shell",
-      "label": "调试",
+      "label": "tsc",
       "identifier": "tsc",
       "command": "tsc",
       "args": [
