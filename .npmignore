@@ -1,4 +1,6 @@
 .cache/
 .vscode/
 node_modules/
+src/
+types/
 *.log
