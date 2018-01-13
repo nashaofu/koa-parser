@@ -31,7 +31,7 @@ deploy:
   on:
     branches: master
 
-before_deploy:
+after_deploy:
   - cat .gitignore
   - ls
   - cd lib
