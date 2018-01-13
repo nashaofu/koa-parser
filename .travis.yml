@@ -15,6 +15,10 @@ script:
 
 before_deploy:
   - rm .gitignore
+  - ls
+  - cd lib
+  - ls
+  - cd ../
 
 deploy:
   provider: npm
@@ -22,6 +26,12 @@ deploy:
   api_key: $api_key
   on:
     branches: master
+
+before_deploy:
+  - ls
+  - cd lib
+  - ls
+  - cd ../
 
 branches:
   only:
