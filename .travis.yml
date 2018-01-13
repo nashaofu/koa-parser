@@ -18,10 +18,9 @@ script:
 
 before_deploy:
   - rm .gitignore
-  - cat .gitignore
-  - ls
+  - ls -a
   - cd lib
-  - ls
+  - ls -a
   - cd ../
 
 deploy:
@@ -32,10 +31,9 @@ deploy:
     branches: master
 
 after_deploy:
-  - cat .gitignore
-  - ls
+  - ls -a
   - cd lib
-  - ls
+  - ls -a
   - cd ../
 
 branches:
