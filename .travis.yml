@@ -16,12 +16,25 @@ script:
   - npm run lint
   - npm run build
 
+before_deploy:
+  - ls
+  - cd lib
+  - ls
+  - cd ../
+
 deploy:
   provider: npm
   email: $email
   api_key: $api_key
   on:
     branches: master
+
+after_deploy:
+  - ls
+  - cd lib
+  - ls
+  - cd ../
+  - echo success
 
 branches:
   only:

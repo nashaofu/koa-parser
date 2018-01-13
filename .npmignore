@@ -1,6 +1,9 @@
 .cache/
 .vscode/
 node_modules/
+!lib/
 src/
 types/
 *.log
+server.ts
+tsconfig.dev.json
