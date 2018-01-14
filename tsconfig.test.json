@@ -2,13 +2,11 @@
   "compilerOptions": {
     "target": "es2015",
     "module": "commonjs",
-    "sourceMap": true,
-    "outDir": "./.cache",
     "strict": true
   },
   "include": [
     "./src",
-    "./types",
-    "./server.ts"
+    "./test",
+    "./types"
   ]
 }

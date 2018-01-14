@@ -1,0 +1,18 @@
+{
+  "rootDir": "../",
+  "moduleFileExtensions": [
+    "js",
+    "ts"
+  ],
+  "transform": {
+    "^.+\\.ts$": "<rootDir>/test/preprocessor.js"
+  },
+  "mapCoverage": true,
+  "coverageDirectory": "<rootDir>/test/coverage",
+  "collectCoverageFrom": [
+    "src/**.ts"
+  ],
+  "testMatch": [
+    "**/test/*.test.ts"
+  ]
+}
