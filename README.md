@@ -7,26 +7,48 @@ a body parser for koa. support json, form(urlencoded), multipart and text type b
 
 ## Usage
 
-```js
-const Koa = require('koa')
-const parser = require('koa-parser')
+1. javascript
+  ```js
+  const Koa = require('koa')
+  const parser = require('koa-parser')
 
-const port = 3000
-const app = new Koa()
+  const port = 3000
+  const app = new Koa()
 
-app.use(parser())
+  app.use(parser())
 
-app.use(async (ctx, next) => {
-  // if nothing was parsed, body will be undefined
-  if (ctx.request.body !== undefined) {
-    ctx.body = ctx.request.body
-  }
-  await next()
-})
+  app.use(async (ctx, next) => {
+    // if nothing was parsed, body will be undefined
+    if (ctx.request.body !== undefined) {
+      ctx.body = ctx.request.body
+    }
+    await next()
+  })
 
-app.listen(port)
-console.error(`listening on port ${port}`)
-```
+  app.listen(port)
+  console.error(`listening on port ${port}`)
+  ```
+
+2. typescript
+  ```typescript
+  import * as Koa from 'koa'
+  import * as parser from 'koa-parser'
+
+  const port = 3000
+  const app = new Koa()
+
+  app.use(parser())
+
+  app.use(async (ctx: Koa.Context, next: () => Promise<void>) => {
+    if (ctx.request.body !== undefined) {
+      ctx.body = ctx.request.body
+    }
+    await next()
+  })
+
+  app.listen(port)
+  console.error(`listening on port ${port}`)
+  ```
 
 ## Screenshot
 
@@ -34,14 +56,14 @@ console.error(`listening on port ${port}`)
 
 ## Options
 
-```js
+```typescript
 app.use(parser({
-  encoding: 'utf-8', // requested encoding
-  error: false, // support custom parser error handle
-  json: true, // support json parser
-  multipart: true, // support multipart(form-data) parser
-  text: true, // support text parser
-  urlencoded: true // support urlencoded(form) parser
+  encoding?: string, // requested encoding
+  error?: (err: any, ctx: any) => any, // support custom parser error handle
+  json?: string | string[], // support json parser types
+  multipart?: string | string[], // support multipart(form-data) parser types
+  text?: string | string[], // support text parser types
+  urlencoded?: string | string[] // support urlencoded(form) parser types
 }))
 ```
 
@@ -56,13 +78,19 @@ app.use(parser({
   }))
   ```
 
-* **json**: support json parser, Default is ``true``
+* **json**: Extended support for json parsing options, The default supported types are ``['application/json', 'application/json-patch+json', 'application/vnd.api+json', 'application/csp-report']``. you can customize the type like:
+  ```js
+  // json will be support default types and application/x-web-app-manifest+json
+  app.use(parser({
+    json: 'application/x-web-app-manifest+json' // You can also pass parameters in an array
+  }))
+  ```
 
-* **multipart**: support multipart(form-data) parser, Default is ``true``
+* **multipart**: Extended support for multipart(form-data) parsing options, The default supported types are ``['multipart/form-data']``
 
-* **text**: support text parser, Default is ``true``
+* **text**: Extended support for text parsing options, The default supported types are ``['text/plain']``
 
-* **urlencoded**: support urlencoded(form) parser, Default is ``true``
+* **urlencoded**: Extended support for urlencoded(form) parsing options, The default supported types are ``['application/x-www-form-urlencoded']``
 
 ## Licences
 

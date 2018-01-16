@@ -4,7 +4,7 @@ import * as Koa from 'koa'
 
 const multipart = (ctx: Koa.Context, {
   encoding = 'utf-8'
-} = {}): Promise<any> => {
+}: { encoding?: string } = {}): Promise<any> => {
   return new Promise((resolve, reject) => {
     const formidable: IncomingForm = new IncomingForm()
     // 设置编码
