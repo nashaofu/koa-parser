@@ -8,7 +8,9 @@ const app = new Koa()
 
 app.use(logger())
 
-app.use(parser())
+app.use(parser({
+  json: '0'
+}))
 
 app.use(async (ctx: Koa.Context, next: () => Promise<void>) => {
   if (ctx.request.body !== undefined) {
