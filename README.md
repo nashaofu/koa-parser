@@ -28,7 +28,6 @@ a body parser for koa. support json, form(urlencoded), multipart and text type b
   app.listen(port)
   console.error(`listening on port ${port}`)
   ```
-
 2. typescript
   ```typescript
   import * as Koa from 'koa'
