@@ -8,7 +8,16 @@ const app = new Koa()
 
 app.use(logger())
 
-app.use(parser())
+// app.use(async (ctx, next) => {
+//   ctx.request.body = 'hello'
+//   await next()
+// })
+
+app.use(parser({
+  error(err, ctx) {
+    ctx.throw('custom parse error', 422)
+  }
+}))
 
 app.use(async (ctx: Koa.Context, next: () => Promise<void>) => {
   if (ctx.request.body !== undefined) {

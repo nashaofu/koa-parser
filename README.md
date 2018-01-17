@@ -8,46 +8,46 @@ a body parser for koa. support json, form(urlencoded), multipart and text type b
 ## Usage
 
 1. javascript
-  ```js
-  const Koa = require('koa')
-  const parser = require('koa-parser')
+```js
+const Koa = require('koa')
+const parser = require('koa-parser')
 
-  const port = 3000
-  const app = new Koa()
+const port = 3000
+const app = new Koa()
 
-  app.use(parser())
+app.use(parser())
 
-  app.use(async (ctx, next) => {
-    // if nothing was parsed, body will be undefined
-    if (ctx.request.body !== undefined) {
-      ctx.body = ctx.request.body
-    }
-    await next()
-  })
+app.use(async (ctx, next) => {
+  // if nothing was parsed, body will be undefined
+  if (ctx.request.body !== undefined) {
+    ctx.body = ctx.request.body
+  }
+  await next()
+})
 
-  app.listen(port)
-  console.error(`listening on port ${port}`)
-  ```
+app.listen(port)
+console.error(`listening on port ${port}`)
+```
 2. typescript
-  ```typescript
-  import * as Koa from 'koa'
-  import * as parser from 'koa-parser'
+```typescript
+import * as Koa from 'koa'
+import * as parser from 'koa-parser'
 
-  const port = 3000
-  const app = new Koa()
+const port = 3000
+const app = new Koa()
 
-  app.use(parser())
+app.use(parser())
 
-  app.use(async (ctx: Koa.Context, next: () => Promise<void>) => {
-    if (ctx.request.body !== undefined) {
-      ctx.body = ctx.request.body
-    }
-    await next()
-  })
+app.use(async (ctx: Koa.Context, next: () => Promise<void>) => {
+  if (ctx.request.body !== undefined) {
+    ctx.body = ctx.request.body
+  }
+  await next()
+})
 
-  app.listen(port)
-  console.error(`listening on port ${port}`)
-  ```
+app.listen(port)
+console.error(`listening on port ${port}`)
+```
 
 ## Screenshot
 
