@@ -1,6 +1,6 @@
 {
   "name": "koa-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a body parser for koa",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/nashaofu/koa-parser#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.com/"
+    "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
     "co-body": "^5.1.1",
