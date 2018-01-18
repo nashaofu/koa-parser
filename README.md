@@ -7,7 +7,6 @@ a body parser for koa. support json, form(urlencoded), multipart and text type b
 
 ## Usage
 
-1. javascript
 ```js
 const Koa = require('koa')
 const parser = require('koa-parser')
@@ -28,26 +27,6 @@ app.use(async (ctx, next) => {
 app.listen(port)
 console.error(`listening on port ${port}`)
 ```
-2. typescript
-```typescript
-import * as Koa from 'koa'
-import * as parser from 'koa-parser'
-
-const port = 3000
-const app = new Koa()
-
-app.use(parser())
-
-app.use(async (ctx: Koa.Context, next: () => Promise<void>) => {
-  if (ctx.request.body !== undefined) {
-    ctx.body = ctx.request.body
-  }
-  await next()
-})
-
-app.listen(port)
-console.error(`listening on port ${port}`)
-```
 
 ## Screenshot
 
@@ -58,7 +37,7 @@ console.error(`listening on port ${port}`)
 ```typescript
 app.use(parser({
   encoding?: string, // requested encoding
-  error?: (err: any, ctx: any) => any, // support custom parser error handle
+  error?: (err: any, ctx: Koa.Context) => any, // support custom parser error handle
   json?: string | string[], // support json parser types
   multipart?: string | string[], // support multipart(form-data) parser types
   text?: string | string[], // support text parser types
@@ -73,15 +52,16 @@ app.use(parser({
   app.use(parser({
     error (err, ctx) {
       console.log(err)
+      ctx.throw(err, 422)
     }
   }))
   ```
 
 * **json**: Extended support for json parsing options, The default supported types are ``['application/json', 'application/json-patch+json', 'application/vnd.api+json', 'application/csp-report']``. you can customize the type like:
   ```js
-  // json will be support default types and application/x-web-app-manifest+json
+  // json will be support default types and application/x-javascript
   app.use(parser({
-    json: 'application/x-web-app-manifest+json' // You can also pass parameters in an array
+    json: 'application/x-javascript' // You can also pass parameters in an array
   }))
   ```
 

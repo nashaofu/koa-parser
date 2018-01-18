@@ -19,7 +19,6 @@ describe('test width default', () => {
       app.use(async (ctx, next) => {
         expect(ctx.request.body).toEqual({
           str: 'str',
-          arr: ['arr1', 'arr2'],
           obj: { key: 'val' }
         })
         ctx.body = ctx.request.body
@@ -31,11 +30,9 @@ describe('test width default', () => {
         .post('/')
         .send({
           str: 'str',
-          arr: ['arr1', 'arr2'],
           obj: { key: 'val' }
         }).expect({
           str: 'str',
-          arr: ['arr1', 'arr2'],
           obj: { key: 'val' }
         }, done)
     })
@@ -51,7 +48,7 @@ describe('test width default', () => {
       supertest(server)
         .patch('/')
         .set('Content-type', 'application/json-patch+json')
-        .send('[{"op": "add", "path": "/foo", "value": "bar"}]')
+        .send(JSON.stringify([{ op: 'add', path: '/foo', value: 'bar' }]))
         .expect([{ op: 'add', path: '/foo', value: 'bar' }], done)
     })
 
@@ -76,7 +73,6 @@ describe('test width default', () => {
       app.use(async (ctx, next) => {
         expect(ctx.request.body).toEqual({
           str: 'str',
-          arr: ['arr1', 'arr2'],
           obj: { key: 'val' }
         })
         ctx.body = ctx.request.body
@@ -88,11 +84,9 @@ describe('test width default', () => {
         .post('/')
         .send({
           str: 'str',
-          arr: ['arr1', 'arr2'],
           obj: { key: 'val' }
         }).expect({
           str: 'str',
-          arr: ['arr1', 'arr2'],
           obj: { key: 'val' }
         }, done)
     })
@@ -118,7 +112,9 @@ describe('test width default', () => {
         .attach('firstField', 'package.json')
         .expect(200)
         .end((err, res) => {
-          if (err) return done(err)
+          if (err) {
+            return done(err)
+          }
           expect(res.body).toMatchObject({
             names: expect.arrayContaining(['Paul', 'John']),
             firstField: expect.any(Object)
@@ -175,7 +171,7 @@ describe('error and not parser', () => {
 
   it('should get custom error message', done => {
     app.use(parser({
-      error(err, ctx) {
+      error (err, ctx) {
         ctx.throw('custom parse error', 422)
       }
     }))
