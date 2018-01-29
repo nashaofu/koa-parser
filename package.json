@@ -12,7 +12,7 @@
     "dev": "tsc -p ./tsconfig.dev.json && node ./.cache/server.js",
     "start": "npm run dev",
     "build": "tsc -p ./tsconfig.json",
-    "lint": "tslint -p ./tslint.json",
+    "lint": "tslint -p ./tsconfig.json",
     "test": "jest --config ./test/jest.config.json --coverage"
   },
   "repository": {

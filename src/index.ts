@@ -1,17 +1,6 @@
 import * as Koa from 'koa'
 import * as parser from './parser'
 
-declare namespace KoaParser {
-  export interface Options {
-    readonly encoding?: string
-    readonly error?: (err: any, ctx: any) => any
-    json?: string | string[]
-    multipart?: string | string[]
-    text?: string | string[]
-    urlencoded?: string | string[]
-  }
-}
-
 const KoaParser = ({
   encoding = 'utf-8', // 编码
   error, // 解析错误回调
