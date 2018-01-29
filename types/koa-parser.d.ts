@@ -1,7 +1,7 @@
 declare namespace KoaParser {
   interface Options {
     readonly encoding?: string
-    readonly error?: (err: any, ctx: any) => any
+    readonly error?: (err: any, ctx: any) => void
     json?: string | string[]
     multipart?: string | string[]
     text?: string | string[]
