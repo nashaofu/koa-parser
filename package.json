@@ -6,7 +6,8 @@
   "types": "lib/index.d.ts",
   "files": [
     "lib/",
-    "screenshot/"
+    "screenshot/",
+    "types/"
   ],
   "scripts": {
     "dev": "tsc -p ./tsconfig.dev.json && node ./.cache/server.js",
