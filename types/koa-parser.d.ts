@@ -1,5 +1,5 @@
 declare namespace KoaParser {
-  export interface Options {
+  interface Options {
     readonly encoding?: string
     readonly error?: (err: any, ctx: any) => any
     json?: string | string[]
@@ -7,4 +7,15 @@ declare namespace KoaParser {
     text?: string | string[]
     urlencoded?: string | string[]
   }
+
+  interface Body {
+    [key: string]: any
+  }
+
+  interface ParserOptions {
+    encoding?: string
+    [key: string]: any
+  }
 }
+
+export default KoaParser

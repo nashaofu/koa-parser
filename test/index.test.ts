@@ -1,6 +1,6 @@
 import * as Koa from 'koa'
-import * as parser from '../src'
 import * as supertest from 'supertest'
+import * as parser from '../src'
 
 describe('test width default', () => {
   let app
@@ -18,8 +18,8 @@ describe('test width default', () => {
     it('should parse json body ok', done => {
       app.use(async (ctx, next) => {
         expect(ctx.request.body).toEqual({
-          str: 'str',
-          obj: { key: 'val' }
+          obj: { key: 'val' },
+          str: 'str'
         })
         ctx.body = ctx.request.body
         await next()
@@ -29,11 +29,11 @@ describe('test width default', () => {
       supertest(server)
         .post('/')
         .send({
-          str: 'str',
-          obj: { key: 'val' }
+          obj: { key: 'val' },
+          str: 'str'
         }).expect({
-          str: 'str',
-          obj: { key: 'val' }
+          obj: { key: 'val' },
+          str: 'str'
         }, done)
     })
 
@@ -72,8 +72,8 @@ describe('test width default', () => {
       app.use(parser())
       app.use(async (ctx, next) => {
         expect(ctx.request.body).toEqual({
-          str: 'str',
-          obj: { key: 'val' }
+          obj: { key: 'val' },
+          str: 'str'
         })
         ctx.body = ctx.request.body
         await next()
@@ -83,11 +83,11 @@ describe('test width default', () => {
       supertest(server)
         .post('/')
         .send({
-          str: 'str',
-          obj: { key: 'val' }
+          obj: { key: 'val' },
+          str: 'str'
         }).expect({
-          str: 'str',
-          obj: { key: 'val' }
+          obj: { key: 'val' },
+          str: 'str'
         }, done)
     })
   })
@@ -96,8 +96,8 @@ describe('test width default', () => {
     it('should parse multipart body ok', done => {
       app.use(async (ctx, next) => {
         expect(ctx.request.body).toMatchObject({
-          names: expect.arrayContaining(['John', 'Paul']),
-          firstField: expect.any(Object)
+          firstField: expect.any(Object),
+          names: expect.arrayContaining(['John', 'Paul'])
         })
         ctx.body = ctx.request.body
         await next()
@@ -116,8 +116,8 @@ describe('test width default', () => {
             return done(err)
           }
           expect(res.body).toMatchObject({
-            names: expect.arrayContaining(['Paul', 'John']),
-            firstField: expect.any(Object)
+            firstField: expect.any(Object),
+            names: expect.arrayContaining(['Paul', 'John'])
           })
           done()
         })
@@ -190,7 +190,7 @@ describe('error and not parser', () => {
   })
 
   describe('not parser', () => {
-    it('should not parse body when ctx.request.body have been set up', function (done) {
+    it('should not parse body when ctx.request.body have been set up', done => {
       app.use(async (ctx, next) => {
         ctx.request.body = 'hello'
         await next()
@@ -213,7 +213,7 @@ describe('error and not parser', () => {
   })
 })
 
-describe('test type', function () {
+describe('test type', () => {
   let app
   let server
   beforeEach(() => {
@@ -259,7 +259,7 @@ describe('test type', function () {
       .expect({ foo: 'bar' }, done)
   })
 
-  it('should get 404', function (done) {
+  it('should get 404', done => {
     app.use(parser())
     app.use(async (ctx, next) => {
       expect(ctx.request.body).toBe(undefined)

@@ -1,17 +1,18 @@
 import { form, json, text } from 'co-body'
 import { IncomingForm } from 'formidable'
 import * as Koa from 'koa'
+import KoaParser from '../types/koa-parser'
 
 const multipart = (ctx: Koa.Context, {
   encoding = 'utf-8'
-}: { encoding?: string } = {}): Promise<any> => {
+}: KoaParser.ParserOptions = {}): Promise<KoaParser.Body> => {
   return new Promise((resolve, reject) => {
     const formidable: IncomingForm = new IncomingForm()
     // 设置编码
     formidable.encoding = encoding
 
     // 存放请求体
-    const body: any = {}
+    const body: KoaParser.Body = {}
 
     formidable.on('field', (field, value) => {
       if (body[field]) {
@@ -35,7 +36,7 @@ const multipart = (ctx: Koa.Context, {
       }
     }).on('end', () => {
       return resolve(body)
-    }).on('error', (err) => {
+    }).on('error', err => {
       return reject(err)
     })
 

@@ -1,7 +1,8 @@
 import * as Koa from 'koa'
+import KoaParser from '../types/koa-parser'
 import * as parser from './parser'
 
-const KoaParser = ({
+const koaParser = ({
   encoding = 'utf-8', // 编码
   error, // 解析错误回调
   json = [], // 支持json解析
@@ -54,7 +55,7 @@ const KoaParser = ({
     }
     try {
       // 存放请求体
-      let body: any = {}
+      let body: KoaParser.Body = {}
       if (ctx.is(jsonTypes)) { // 解析json
         body = await parser.json(ctx, { encoding })
       } else if (ctx.is(multipartTypes)) { // 解析multipart
@@ -78,4 +79,4 @@ const KoaParser = ({
   }
 }
 
-export = KoaParser
+export = koaParser
