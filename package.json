@@ -1,6 +1,6 @@
 {
   "name": "koa-parser",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "a body parser for koa",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -37,19 +37,19 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "co-body": "^5.1.1",
-    "formidable": "^1.1.1"
+    "co-body": "^5.2.0",
+    "formidable": "^1.2.1"
   },
   "devDependencies": {
     "@types/co-body": "0.0.3",
-    "@types/formidable": "^1.0.30",
-    "@types/koa": "^2.0.43",
+    "@types/formidable": "^1.0.31",
+    "@types/koa": "^2.0.45",
     "@types/koa-logger": "^3.1.0",
-    "jest": "^22.0.6",
-    "koa": "^2.4.1",
-    "koa-logger": "^3.1.0",
-    "supertest": "^3.0.0",
-    "tslint": "^5.9.1",
-    "typescript": "^2.6.2"
+    "jest": "^22.4.4",
+    "koa": "^2.5.1",
+    "koa-logger": "^3.2.0",
+    "supertest": "^3.1.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3"
   }
 }

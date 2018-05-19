@@ -7,7 +7,6 @@
   "transform": {
     "^.+\\.ts$": "<rootDir>/test/preprocessor.js"
   },
-  "mapCoverage": true,
   "coverageDirectory": "<rootDir>/test/coverage",
   "collectCoverageFrom": [
     "src/**.ts"
