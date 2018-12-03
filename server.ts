@@ -14,7 +14,7 @@ app.use(logger())
 // })
 
 app.use(parser({
-  error(err, ctx) {
+  error (err, ctx) {
     ctx.throw('custom parse error', 422)
   }
 }))

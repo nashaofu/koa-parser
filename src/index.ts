@@ -51,7 +51,7 @@ const koaParser = ({
   return async (ctx: Koa.Context, next: () => Promise<any>) => {
     // 已经被解析过的情况
     if (ctx.request.body !== undefined) {
-      return await next()
+      return next()
     }
     try {
       // 存放请求体
@@ -75,7 +75,7 @@ const koaParser = ({
         throw err
       }
     }
-    return await next()
+    return next()
   }
 }
 
