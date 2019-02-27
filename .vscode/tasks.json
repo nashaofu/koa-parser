@@ -1,24 +1,21 @@
 {
-  // See https://go.microsoft.com/fwlink/?LinkId=733558
-  // for the documentation about the tasks.json format
+  // 有关 tasks.json 格式的文档，请参见
+  // https://go.microsoft.com/fwlink/?LinkId=733558
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "shell",
       "label": "tsc",
-      "identifier": "tsc",
-      "command": "tsc",
-      "args": [
-        "-p",
-        "./tsconfig.dev.json"
-      ],
+      "type": "typescript",
+      "tsconfig": "tsconfig.dev.json",
+      "problemMatcher": ["$tsc"],
       "presentation": {
-        "echo": false,
-        "reveal": "never",
+        "echo": true,
+        "reveal": "silent",
         "focus": false,
-        "panel": "shared"
-      },
-      "promptOnClose": false
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
     }
   ]
 }

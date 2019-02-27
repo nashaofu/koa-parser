@@ -1,6 +1,6 @@
-import * as Koa from 'koa'
-import * as supertest from 'supertest'
-import * as parser from '../src'
+import Koa from 'koa'
+import parser from '../src'
+import supertest from 'supertest'
 
 describe('test width default', () => {
   let app
@@ -10,9 +10,7 @@ describe('test width default', () => {
     app.use(parser())
   })
 
-  afterEach(() => {
-    server.close()
-  })
+  afterEach(() => server.close())
 
   describe('json', () => {
     it('should parse json body ok', done => {
@@ -31,10 +29,14 @@ describe('test width default', () => {
         .send({
           obj: { key: 'val' },
           str: 'str'
-        }).expect({
-          obj: { key: 'val' },
-          str: 'str'
-        }, done)
+        })
+        .expect(
+          {
+            obj: { key: 'val' },
+            str: 'str'
+          },
+          done
+        )
     })
 
     it('should parse json patch', done => {
@@ -85,10 +87,14 @@ describe('test width default', () => {
         .send({
           obj: { key: 'val' },
           str: 'str'
-        }).expect({
-          obj: { key: 'val' },
-          str: 'str'
-        }, done)
+        })
+        .expect(
+          {
+            obj: { key: 'val' },
+            str: 'str'
+          },
+          done
+        )
     })
   })
 
@@ -170,11 +176,13 @@ describe('error and not parser', () => {
   })
 
   it('should get custom error message', done => {
-    app.use(parser({
-      error (err, ctx) {
-        ctx.throw('custom parse error', 422)
-      }
-    }))
+    app.use(
+      parser({
+        error (err, ctx) {
+          ctx.throw('custom parse error', 422)
+        }
+      })
+    )
 
     app.use(async (ctx, next) => {
       await next()
@@ -224,9 +232,11 @@ describe('test type', () => {
   })
 
   it('should extent json with string ok', done => {
-    app.use(parser({
-      json: 'application/x-javascript'
-    }))
+    app.use(
+      parser({
+        json: 'application/x-javascript'
+      })
+    )
 
     app.use(async (ctx, next) => {
       expect(ctx.request.body).toEqual({ foo: 'bar' })
@@ -242,9 +252,11 @@ describe('test type', () => {
   })
 
   it('should extent json with array ok', done => {
-    app.use(parser({
-      json: ['application/x-javascript', 'application/y-javascript']
-    }))
+    app.use(
+      parser({
+        json: ['application/x-javascript', 'application/y-javascript']
+      })
+    )
 
     app.use(async (ctx, next) => {
       ctx.body = ctx.request.body

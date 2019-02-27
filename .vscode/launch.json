@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "Launch Program",
       "preLaunchTask": "tsc",
-      "program": "${workspaceFolder}\\server.ts",
+      "program": "${workspaceFolder}/server.ts",
       "outFiles": [
         "${workspaceFolder}/.cache/*.js"
       ],

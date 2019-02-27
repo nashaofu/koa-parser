@@ -1,8 +1,6 @@
 {
   "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended"
-  ],
+  "extends": ["tslint:recommended"],
   "jsRules": {},
   "rules": {
     "no-return-await": true,
@@ -16,7 +14,10 @@
     "trailing-comma": [true, { "multiline": "never", "singleline": "never" }],
     "space-before-function-paren": [true, "always"],
     "object-literal-sort-keys": [true, "ignore-case"],
-    "no-shadowed-variable": [false]
+    "no-shadowed-variable": [false],
+    "ordered-imports": false,
+    "interface-name": false,
+    "curly": false
   },
   "rulesDirectory": []
 }

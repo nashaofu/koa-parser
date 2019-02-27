@@ -1,7 +1,6 @@
-import * as Koa from 'koa'
-import * as logger from 'koa-logger'
-
-import * as parser from './src'
+import Koa from 'koa'
+import logger from 'koa-logger'
+import parser from './src'
 
 const port = 3000
 const app = new Koa()
@@ -13,13 +12,15 @@ app.use(logger())
 //   await next()
 // })
 
-app.use(parser({
-  error (err, ctx) {
-    ctx.throw('custom parse error', 422)
-  }
-}))
+app.use(
+  parser({
+    error (err, ctx) {
+      ctx.throw('custom parse error', 422)
+    }
+  })
+)
 
-app.use(async (ctx: Koa.Context, next: () => Promise<void>) => {
+app.use(async (ctx: Koa.Context, next) => {
   if (ctx.request.body !== undefined) {
     ctx.body = ctx.request.body
   }
