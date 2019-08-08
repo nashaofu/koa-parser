@@ -1,6 +1,6 @@
 {
   "name": "koa-parser",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "a body parser for koa",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -9,12 +9,12 @@
     "screenshot/"
   ],
   "scripts": {
-    "dev": "tsc -p ./tsconfig.dev.json && node ./.cache/server.js",
     "start": "npm run dev",
+    "dev": "npm run clean && tsc -p ./tsconfig.dev.json && node ./.cache/server.js",
     "build": "npm run lint && npm run clean && tsc -p ./tsconfig.json",
     "lint": "eslint . --ext .js,.ts --fix",
     "clean": "rimraf lib .cache",
-    "test": "jest --config ./test/jest.config.json --coverage"
+    "test": "jest --config jest.config.js --coverage"
   },
   "repository": {
     "type": "git",
@@ -43,9 +43,10 @@
   "devDependencies": {
     "@types/co-body": "0.0.3",
     "@types/formidable": "^1.0.31",
-    "@types/jest": "^24.0.9",
+    "@types/jest": "^24.0.15",
     "@types/koa": "^2.0.48",
     "@types/koa-logger": "^3.1.1",
+    "@types/supertest": "^2.0.7",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
     "eslint": "^6.1.0",
@@ -59,6 +60,7 @@
     "koa-logger": "^3.2.0",
     "rimraf": "^2.6.3",
     "supertest": "^3.4.2",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
   }
 }

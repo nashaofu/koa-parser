@@ -4,9 +4,11 @@ import { File } from 'formidable'
 export type BodyBase = number | string | object | File
 export type BodyArray = BodyBase[]
 
-export interface Body {
+export interface BodyObject {
   [key: string]: BodyBase | BodyArray
 }
+
+export type Body = BodyBase | BodyArray | BodyObject
 
 export interface Options {
   readonly encoding?: string

@@ -1,27 +1,36 @@
 import Koa from 'koa'
 import parser from '../src'
+import { Server } from 'net'
 import supertest from 'supertest'
 
-describe('test width default', () => {
-  let app
-  let server
-  beforeEach(() => {
-    app = new Koa()
-    app.use(parser())
-  })
+describe('test width default', (): void => {
+  let app: Koa
+  let server: Server
+  beforeEach(
+    (): void => {
+      app = new Koa()
+      app.use(parser())
+    }
+  )
 
-  afterEach(() => server.close())
+  afterEach(
+    (): void => {
+      server.close()
+    }
+  )
 
-  describe('json', () => {
-    it('should parse json body ok', done => {
-      app.use(async (ctx, next) => {
-        expect(ctx.request.body).toEqual({
-          obj: { key: 'val' },
-          str: 'str'
-        })
-        ctx.body = ctx.request.body
-        await next()
-      })
+  describe('json', (): void => {
+    it('should parse json body ok', (done): void => {
+      app.use(
+        async (ctx, next): Promise<void> => {
+          expect(ctx.request.body).toEqual({
+            obj: { key: 'val' },
+            str: 'str'
+          })
+          ctx.body = ctx.request.body
+          await next()
+        }
+      )
 
       server = app.listen()
       supertest(server)
@@ -39,12 +48,14 @@ describe('test width default', () => {
         )
     })
 
-    it('should parse json patch', done => {
-      app.use(async (ctx, next) => {
-        expect(ctx.request.body).toEqual([{ op: 'add', path: '/foo', value: 'bar' }])
-        ctx.body = ctx.request.body
-        await next()
-      })
+    it('should parse json patch', (done): void => {
+      app.use(
+        async (ctx, next): Promise<void> => {
+          expect(ctx.request.body).toEqual([{ op: 'add', path: '/foo', value: 'bar' }])
+          ctx.body = ctx.request.body
+          await next()
+        }
+      )
 
       server = app.listen()
       supertest(server)
@@ -54,12 +65,14 @@ describe('test width default', () => {
         .expect([{ op: 'add', path: '/foo', value: 'bar' }], done)
     })
 
-    it('should parse json body with json-api headers ok', done => {
-      app.use(async (ctx, next) => {
-        expect(ctx.request.body).toEqual({ str: 121 })
-        ctx.body = ctx.request.body
-        await next()
-      })
+    it('should parse json body with json-api headers ok', (done): void => {
+      app.use(
+        async (ctx, next): Promise<void> => {
+          expect(ctx.request.body).toEqual({ str: 121 })
+          ctx.body = ctx.request.body
+          await next()
+        }
+      )
 
       server = app.listen()
       supertest(server)
@@ -70,16 +83,18 @@ describe('test width default', () => {
         .expect({ str: 121 }, done)
     })
 
-    it('should work when use parser again', done => {
+    it('should work when use parser again', (done): void => {
       app.use(parser())
-      app.use(async (ctx, next) => {
-        expect(ctx.request.body).toEqual({
-          obj: { key: 'val' },
-          str: 'str'
-        })
-        ctx.body = ctx.request.body
-        await next()
-      })
+      app.use(
+        async (ctx, next): Promise<void> => {
+          expect(ctx.request.body).toEqual({
+            obj: { key: 'val' },
+            str: 'str'
+          })
+          ctx.body = ctx.request.body
+          await next()
+        }
+      )
 
       server = app.listen()
       supertest(server)
@@ -98,16 +113,18 @@ describe('test width default', () => {
     })
   })
 
-  describe('multipart', () => {
-    it('should parse multipart body ok', done => {
-      app.use(async (ctx, next) => {
-        expect(ctx.request.body).toMatchObject({
-          firstField: expect.any(Object),
-          names: expect.arrayContaining(['John', 'Paul'])
-        })
-        ctx.body = ctx.request.body
-        await next()
-      })
+  describe('multipart', (): void => {
+    it('should parse multipart body ok', (done): void => {
+      app.use(
+        async (ctx, next): Promise<void> => {
+          expect(ctx.request.body).toMatchObject({
+            firstField: expect.any(Object),
+            names: expect.arrayContaining(['John', 'Paul'])
+          })
+          ctx.body = ctx.request.body
+          await next()
+        }
+      )
 
       server = app.listen()
       supertest(server)
@@ -117,26 +134,30 @@ describe('test width default', () => {
         .field('names', 'Paul')
         .attach('firstField', 'package.json')
         .expect(200)
-        .end((err, res) => {
-          if (err) {
-            return done(err)
+        .end(
+          (err, res): void => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body).toMatchObject({
+              firstField: expect.any(Object),
+              names: expect.arrayContaining(['Paul', 'John'])
+            })
+            done()
           }
-          expect(res.body).toMatchObject({
-            firstField: expect.any(Object),
-            names: expect.arrayContaining(['Paul', 'John'])
-          })
-          done()
-        })
+        )
     })
   })
 
-  describe('text', () => {
-    it('should parse text body ok', done => {
-      app.use(async (ctx, next) => {
-        expect(ctx.request.body).toBe('text')
-        ctx.body = ctx.request.body
-        await next()
-      })
+  describe('text', (): void => {
+    it('should parse text body ok', (done): void => {
+      app.use(
+        async (ctx, next): Promise<void> => {
+          expect(ctx.request.body).toBe('text')
+          ctx.body = ctx.request.body
+          await next()
+        }
+      )
 
       server = app.listen()
       supertest(server)
@@ -147,13 +168,15 @@ describe('test width default', () => {
     })
   })
 
-  describe('urlencoded', () => {
-    it('should parse urlencoded body ok', done => {
-      app.use(async (ctx, next) => {
-        expect(ctx.request.body).toEqual({ foo: { bar: 'baz' } })
-        ctx.body = ctx.request.body
-        await next()
-      })
+  describe('urlencoded', (): void => {
+    it('should parse urlencoded body ok', (done): void => {
+      app.use(
+        async (ctx, next): Promise<void> => {
+          expect(ctx.request.body).toEqual({ foo: { bar: 'baz' } })
+          ctx.body = ctx.request.body
+          await next()
+        }
+      )
 
       server = app.listen()
       supertest(server)
@@ -165,28 +188,35 @@ describe('test width default', () => {
   })
 })
 
-describe('error and not parser', () => {
-  let app
-  let server
-  beforeEach(() => {
-    app = new Koa()
-  })
-  afterEach(() => {
-    server.close()
-  })
+describe('error and not parser', (): void => {
+  let app: Koa
+  let server: Server
+  beforeEach(
+    (): void => {
+      app = new Koa()
+    }
+  )
+  afterEach(
+    (): void => {
+      server.close()
+    }
+  )
 
-  it('should get custom error message', done => {
+  it('should get custom error message', (done): void => {
     app.use(
       parser({
-        error (err, ctx) {
+        error (err, ctx): void {
           ctx.throw('custom parse error', 422)
+          console.log(err)
         }
       })
     )
 
-    app.use(async (ctx, next) => {
-      await next()
-    })
+    app.use(
+      async (ctx, next): Promise<void> => {
+        await next()
+      }
+    )
 
     server = app.listen()
     supertest(server)
@@ -197,18 +227,22 @@ describe('error and not parser', () => {
       .expect('custom parse error', done)
   })
 
-  describe('not parser', () => {
-    it('should not parse body when ctx.request.body have been set up', done => {
-      app.use(async (ctx, next) => {
-        ctx.request.body = 'hello'
-        await next()
-      })
+  describe('not parser', (): void => {
+    it('should not parse body when ctx.request.body have been set up', (done): void => {
+      app.use(
+        async (ctx, next): Promise<void> => {
+          ctx.request.body = 'hello'
+          await next()
+        }
+      )
       app.use(parser())
-      app.use(async (ctx, next) => {
-        expect(ctx.request.body).toBe('hello')
-        ctx.body = ctx.request.body
-        await next()
-      })
+      app.use(
+        async (ctx, next): Promise<void> => {
+          expect(ctx.request.body).toBe('hello')
+          ctx.body = ctx.request.body
+          await next()
+        }
+      )
 
       server = app.listen()
       supertest(server)
@@ -221,28 +255,34 @@ describe('error and not parser', () => {
   })
 })
 
-describe('test type', () => {
-  let app
-  let server
-  beforeEach(() => {
-    app = new Koa()
-  })
-  afterEach(() => {
-    server.close()
-  })
+describe('test type', (): void => {
+  let app: Koa
+  let server: Server
+  beforeEach(
+    (): void => {
+      app = new Koa()
+    }
+  )
+  afterEach(
+    (): void => {
+      server.close()
+    }
+  )
 
-  it('should extent json with string ok', done => {
+  it('should extent json with string ok', (done): void => {
     app.use(
       parser({
         json: 'application/x-javascript'
       })
     )
 
-    app.use(async (ctx, next) => {
-      expect(ctx.request.body).toEqual({ foo: 'bar' })
-      ctx.body = ctx.request.body
-      await next()
-    })
+    app.use(
+      async (ctx, next): Promise<void> => {
+        expect(ctx.request.body).toEqual({ foo: 'bar' })
+        ctx.body = ctx.request.body
+        await next()
+      }
+    )
     server = app.listen()
     supertest(server)
       .post('/')
@@ -251,17 +291,19 @@ describe('test type', () => {
       .expect({ foo: 'bar' }, done)
   })
 
-  it('should extent json with array ok', done => {
+  it('should extent json with array ok', (done): void => {
     app.use(
       parser({
         json: ['application/x-javascript', 'application/y-javascript']
       })
     )
 
-    app.use(async (ctx, next) => {
-      ctx.body = ctx.request.body
-      await next()
-    })
+    app.use(
+      async (ctx, next): Promise<void> => {
+        ctx.body = ctx.request.body
+        await next()
+      }
+    )
 
     server = app.listen()
     supertest(server)
@@ -271,13 +313,15 @@ describe('test type', () => {
       .expect({ foo: 'bar' }, done)
   })
 
-  it('should get 404', done => {
+  it('should get 404', (done): void => {
     app.use(parser())
-    app.use(async (ctx, next) => {
-      expect(ctx.request.body).toBe(undefined)
-      ctx.body = ctx.request.body
-      await next()
-    })
+    app.use(
+      async (ctx, next): Promise<void> => {
+        expect(ctx.request.body).toBe(undefined)
+        ctx.body = ctx.request.body
+        await next()
+      }
+    )
 
     server = app.listen()
     supertest(server)

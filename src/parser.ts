@@ -1,9 +1,9 @@
 import { Context } from 'koa'
-import { Body, BodyArray } from './types'
+import { BodyObject, BodyArray } from './types'
 import { IncomingForm } from 'formidable'
 import { form, json, text, Options } from 'co-body'
 
-const multipart = (ctx: Context, { encoding = 'utf-8' }: Options): Promise<Body> => {
+const multipart = (ctx: Context, { encoding = 'utf-8' }: Options): Promise<BodyObject> => {
   return new Promise(
     (resolve, reject): void => {
       const formidable: IncomingForm = new IncomingForm()
@@ -11,7 +11,7 @@ const multipart = (ctx: Context, { encoding = 'utf-8' }: Options): Promise<Body>
       formidable.encoding = encoding
 
       // 存放请求体
-      const body: Body = {}
+      const body: BodyObject = {}
       formidable
         .on(
           'field',
