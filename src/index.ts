@@ -30,7 +30,7 @@ export = ({
   // 支持的urlencode类型
   const urlencodedTypes: string[] = ['application/x-www-form-urlencoded', ...urlencoded]
 
-  return async (ctx: Context, next: () => Promise<any>) => {
+  return async (ctx: Context, next: () => Promise<void>): Promise<void> => {
     // 已经被解析过的情况
     if (ctx.request.body !== undefined) {
       return next()

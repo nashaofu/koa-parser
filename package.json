@@ -11,8 +11,9 @@
   "scripts": {
     "dev": "tsc -p ./tsconfig.dev.json && node ./.cache/server.js",
     "start": "npm run dev",
-    "lint": "tslint -p ./tsconfig.json",
-    "build": "tsc -p ./tsconfig.json",
+    "build": "npm run lint && npm run clean && tsc -p ./tsconfig.json",
+    "lint": "eslint . --ext .js,.ts --fix",
+    "clean": "rimraf lib .cache",
     "test": "jest --config ./test/jest.config.json --coverage"
   },
   "repository": {
@@ -45,11 +46,19 @@
     "@types/jest": "^24.0.9",
     "@types/koa": "^2.0.48",
     "@types/koa-logger": "^3.1.1",
-    "jest": "^24.1.0",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "^6.1.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "jest": "^24.8.0",
     "koa": "^2.7.0",
     "koa-logger": "^3.2.0",
+    "rimraf": "^2.6.3",
     "supertest": "^3.4.2",
-    "tslint": "^5.13.0",
-    "typescript": "^3.3.3333"
+    "typescript": "^3.5.3"
   }
 }
