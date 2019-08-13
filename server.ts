@@ -1,7 +1,7 @@
 import Koa from 'koa'
 import logger from 'koa-logger'
 import parser from './src'
-import { File, BodyObject } from './src/types'
+import { File } from 'formidable'
 
 const port = 3000
 const app = new Koa()
@@ -20,8 +20,8 @@ app.use(
 app.use(
   async (ctx: Koa.Context, next): Promise<void> => {
     if (ctx.request.body !== undefined) {
-      if ((ctx.request.body as BodyObject).file) {
-        const file: File = (ctx.request.body as BodyObject).file as File
+      if (ctx.request.body.file) {
+        const file: File = ctx.request.body.file
         console.log(file)
         console.log(file.toJSON())
         console.log(file.lastModifiedDate)

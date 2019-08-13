@@ -10,6 +10,7 @@ module.exports = {
   extends: ['standard', 'plugin:@typescript-eslint/recommended'],
   rules: {
     '@typescript-eslint/indent': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/member-delimiter-style': [
       'error',
       {

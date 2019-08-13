@@ -1,14 +1,4 @@
 import { Context } from 'koa'
-import { File } from 'formidable'
-
-export type BodyBase = number | string | object | File
-export type BodyArray = BodyBase[]
-
-export interface BodyObject {
-  [key: string]: BodyBase | BodyArray
-}
-
-export type Body = BodyBase | BodyArray | BodyObject
 
 export interface Options {
   readonly encoding?: string
@@ -21,8 +11,6 @@ export interface Options {
 
 declare module 'koa' {
   interface Request {
-    body?: Body
+    body?: any
   }
 }
-
-export { File }

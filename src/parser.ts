@@ -1,9 +1,8 @@
 import { Context } from 'koa'
-import { BodyObject, BodyArray } from './types'
 import { IncomingForm } from 'formidable'
 import { form, json, text, Options } from 'co-body'
 
-const multipart = (ctx: Context, { encoding = 'utf-8' }: Options): Promise<BodyObject> => {
+const multipart = (ctx: Context, { encoding = 'utf-8' }: Options): Promise<any> => {
   return new Promise(
     (resolve, reject): void => {
       const formidable: IncomingForm = new IncomingForm()
@@ -11,14 +10,14 @@ const multipart = (ctx: Context, { encoding = 'utf-8' }: Options): Promise<BodyO
       formidable.encoding = encoding
 
       // 存放请求体
-      const body: BodyObject = {}
+      const body: any = {}
       formidable
         .on(
           'field',
           (field, value): void => {
             if (body[field]) {
               if (Array.isArray(body[field])) {
-                ;(body[field] as BodyArray).push(value)
+                body[field].push(value)
               } else {
                 body[field] = [body[field], value]
               }
@@ -32,7 +31,7 @@ const multipart = (ctx: Context, { encoding = 'utf-8' }: Options): Promise<BodyO
           (field, file): void => {
             if (body[field]) {
               if (Array.isArray(body[field])) {
-                ;(body[field] as BodyArray).push(file)
+                body[field].push(file)
               } else {
                 body[field] = [body[field], file]
               }
