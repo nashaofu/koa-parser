@@ -37,30 +37,30 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "co-body": "^5.2.0",
+    "co-body": "^6.0.0",
     "formidable": "^1.2.1"
   },
   "devDependencies": {
     "@types/co-body": "0.0.3",
     "@types/formidable": "^1.0.31",
-    "@types/jest": "^24.0.15",
-    "@types/koa": "^2.0.48",
+    "@types/jest": "^24.0.18",
+    "@types/koa": "^2.0.49",
     "@types/koa-logger": "^3.1.1",
-    "@types/supertest": "^2.0.7",
-    "@typescript-eslint/eslint-plugin": "^1.13.0",
-    "@typescript-eslint/parser": "^1.13.0",
-    "eslint": "^6.1.0",
-    "eslint-config-standard": "^13.0.1",
+    "@types/supertest": "^2.0.8",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
+    "eslint": "^6.4.0",
+    "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "jest": "^24.8.0",
-    "koa": "^2.7.0",
-    "koa-logger": "^3.2.0",
-    "rimraf": "^2.6.3",
-    "supertest": "^3.4.2",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.5.3"
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^24.9.0",
+    "koa": "^2.8.1",
+    "koa-logger": "^3.2.1",
+    "rimraf": "^3.0.0",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.3"
   }
 }
